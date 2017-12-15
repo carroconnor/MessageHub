@@ -29,6 +29,7 @@ namespace MessageHub.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(MessageFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
