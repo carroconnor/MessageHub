@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\MessagesController.cs" />
     <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Dtos\AttendanceDto.cs" />
     <Compile Include="Controllers\AttendancesAPIController.cs" />
@@ -242,6 +243,10 @@
     <Compile Include="Migrations\201712190240105_followingtable.Designer.cs">
       <DependentUpon>201712190240105_followingtable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712192018579_AddIsCanceledToMessage.cs" />
+    <Compile Include="Migrations\201712192018579_AddIsCanceledToMessage.Designer.cs">
+      <DependentUpon>201712192018579_AddIsCanceledToMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -273,6 +278,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -323,8 +329,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\MessageForm.cshtml" />
     <Content Include="Views\Messages\Attending.cshtml" />
+    <Content Include="Views\Messages\Mine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712190240105_followingtable.resx">
       <DependentUpon>201712190240105_followingtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712192018579_AddIsCanceledToMessage.resx">
+      <DependentUpon>201712192018579_AddIsCanceledToMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

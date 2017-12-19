@@ -16,6 +16,17 @@ namespace MessageHub.Controllers
             _context = new ApplicationDbContext();
         }
 
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var messages = _context.Messages
+                .Where(g => g.ArtistId == userId)
+                .Include(g => g.Genre)
+                .ToList();
+
+            return View(messages);
+        }
+
         [Authorize]
         public ActionResult Attending()
         {
@@ -44,10 +55,32 @@ namespace MessageHub.Controllers
 
             var viewModel = new MessageFormViewModel
             {
-                Genres = _context.Genres.ToList()
+                Genres = _context.Genres.ToList(),
+                Heading = "Add a Message"
             };
-            return View(viewModel);
+            return View("MessageForm", viewModel);
         }
+
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var message = _context.Messages.Single(g => g.Id == id && g.ArtistId == userId);
+
+            var viewModel = new MessageFormViewModel
+            {
+                Heading = "Edit a Message",
+                Id = message.GenreId,
+                Genres = _context.Genres.ToList(),
+                Date = message.DateTime.ToString("d MMM yyyy"),
+                Time = message.DateTime.ToString("HH:mm"),
+                Genre = message.GenreId,
+                Message = message.Venue
+            };
+            return View("MessageForm", viewModel);
+        }
+
+
 
         [Authorize]
         [HttpPost]
@@ -57,7 +90,7 @@ namespace MessageHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Genres = _context.Genres.ToList();
-                return View("Create", viewModel);
+                return View("MessageForm", viewModel);
             }
 
             var message = new Message
@@ -71,7 +104,30 @@ namespace MessageHub.Controllers
             _context.Messages.Add(message);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Messages");
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(MessageFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = _context.Genres.ToList();
+                return View("MessageForm", viewModel);
+            }
+
+            var userId = User.Identity.GetUserId();
+            var message = _context.Messages.Single(g => g.Id == viewModel.Id && g.ArtistId == userId);
+            message.Venue = viewModel.Message;
+            message.DateTime = viewModel.GetDateTime();
+            message.GenreId = viewModel.Genre;
+
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Mine", "Messages");
         }
     }
 }

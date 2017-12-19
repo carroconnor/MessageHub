@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MessageHub.Models.Message>
+@{
+    ViewBag.Title = "Mine";
+}
+
+<h2>My Upcoming Messages</h2>
+<ul class="messages voffset4">
+    @foreach (var message in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @message.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @message.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @message.Artist.Name
+
+                </span>
+                <span class="artist">
+                    @message.Venue
+                </span>
+                <span class="genre">
+                    @message.Genre.Name
+                </span>
+                <div class="actions">
+                    <a href="@Url.Action("Edit", "Messages", new { id = message.Id })">Edit</a>
+                    <a href="#" class="js-cancel-message" data-message-id="@message.Id">Cancel</a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-cancel-message").click(function (e) {
+                var link = $(e.target);
+
+                bootbox.confirm("Are you sure you want to delete this message?", function (result)
+                {  $.ajax({
+                        url: "/api/messages/" + link.attr("data-message-id"),
+                        method: "DELETE"
+                    })
+                    .done(function () {
+                        link.parents("li").fadeOut(function () {
+                            $(this).remove();
+                        });
+
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+                });
+
+          
+            });
+        });
+    </script>
+}
+
+
