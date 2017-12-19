@@ -7,5 +7,6 @@ namespace MessageHub.ViewModels
     {
         public IEnumerable<Message> UpcomingMessages { get; set; }
         public bool ShowActions { get; set; }
+        public string Heading { get; set; }
     }
 }

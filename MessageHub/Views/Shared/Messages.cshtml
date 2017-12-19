@@ -3,7 +3,8 @@
     ViewBag.Title = "Home Page";
 }
 
-<ul class="messages">
+<h1>@Model.Heading</h1>
+<ul class="messages voffset4">
     @foreach (var message in Model.UpcomingMessages)
     {
         <li>

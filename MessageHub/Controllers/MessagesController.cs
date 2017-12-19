@@ -30,10 +30,11 @@ namespace MessageHub.Controllers
             var viewModel = new MessagesViewModel()
             {
                 UpcomingMessages = messages,
-                ShowActions = User.Identity.IsAuthenticated
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Messages I Like"
             };
 
-            return View(viewModel);
+            return View("Messages", viewModel);
         }
 
         // GET: Messages
