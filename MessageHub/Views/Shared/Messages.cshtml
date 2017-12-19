@@ -1,10 +1,10 @@
-﻿@model IEnumerable<MessageHub.Models.Message>
+﻿@model MessageHub.ViewModels.MessagesViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 <ul class="messages">
-    @foreach (var message in Model)
+    @foreach (var message in Model.UpcomingMessages)
     {
         <li>
             <div class="date">
@@ -17,15 +17,28 @@
             </div>
             <div class="details">
                 <span class="artist">
-                    @message.Artist.Name <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Like</button>
+                    @message.Artist.Name 
+                    
+                    @if (Model.ShowActions)
+                     {
+                        <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Follow?</button>
+                     }
                 </span>
                 <span class="artist">
-                    @message.Venue <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Like</button>
+                    @message.Venue 
+
+                    @if (Model.ShowActions)
+                     {
+                        <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Follow?</button>
+                     }
                 </span>
                 <span class="genre">
-                    @message.Genre.Name
+                    @message.Genre.Name 
                 </span>
-                <button data-message-id="@message.Id" class="btn btn-default btn-sm pull-right js-toggle-attendanceAPI">Interested?</button>
+                    @if (Model.ShowActions)
+                     {
+                        <button data-message-id="@message.Id" class="btn btn-default btn-sm pull-right js-toggle-attendanceAPI">Interested?</button>
+                     }
             </div>
         </li>
     }

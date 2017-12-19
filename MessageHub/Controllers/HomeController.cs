@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using MessageHub.Models;
+using MessageHub.ViewModels;
 
 namespace MessageHub.Controllers
 {
@@ -21,8 +22,17 @@ namespace MessageHub.Controllers
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
                 .Where(g => g.DateTime > DateTime.Now);
-            return View(upcomingMessages);
+
+            var viewModel = new MessagesViewModel
+            {
+                UpcomingMessages = upcomingMessages,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+
+            return View(viewModel);
         }
+
 
         public ActionResult About()
         {
@@ -37,5 +47,7 @@ namespace MessageHub.Controllers
 
             return View();
         }
+
+
     }
 }

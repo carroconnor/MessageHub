@@ -1,0 +1,35 @@
+﻿@model MessageHub.ViewModels.MessagesViewModel
+@{
+    ViewBag.Title = "Attending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Attending</h2>
+<ul class="messages">
+    @foreach (var message in Model.UpcomingMessages)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @message.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @message.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @message.Artist.Name <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Follow?</button>
+                </span>
+                <span class="artist">
+                    @message.Venue <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Follow?</button>
+                </span>
+                <span class="genre">
+                    @message.Genre.Name
+                </span>
+                <button data-message-id="@message.GenreId" class="btn btn-default btn-sm pull-right js-toggle-attendanceAPI">Interested?</button>
+            </div>
+        </li>
+    }
+</ul>
+

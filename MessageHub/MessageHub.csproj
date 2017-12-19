@@ -200,11 +200,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Dtos\AttendanceDto.cs" />
     <Compile Include="Controllers\AttendancesAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Dtos\FollowingDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,10 +238,15 @@
     <Compile Include="Migrations\201712161925320_AddAttendance.Designer.cs">
       <DependentUpon>201712161925320_AddAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712190240105_followingtable.cs" />
+    <Compile Include="Migrations\201712190240105_followingtable.Designer.cs">
+      <DependentUpon>201712190240105_followingtable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -250,6 +257,7 @@
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\ForgotViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
+    <Compile Include="ViewModels\MessagesViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MessageFormViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -316,6 +324,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\Attending.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712161925320_AddAttendance.resx">
       <DependentUpon>201712161925320_AddAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712190240105_followingtable.resx">
+      <DependentUpon>201712190240105_followingtable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

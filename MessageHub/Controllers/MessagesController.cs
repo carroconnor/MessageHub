@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using MessageHub.Models;
 using MessageHub.ViewModels;
@@ -13,6 +14,26 @@ namespace MessageHub.Controllers
         public MessagesController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+            var messages = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Message)
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .ToList();
+
+            var viewModel = new MessagesViewModel()
+            {
+                UpcomingMessages = messages,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
 
         // GET: Messages
