@@ -19,6 +19,7 @@ namespace MessageHub.Controllers
         {
             var upcomingMessages = _context.Messages
                 .Include(g => g.Artist)
+                .Include(g => g.Genre)
                 .Where(g => g.DateTime > DateTime.Now);
             return View(upcomingMessages);
         }

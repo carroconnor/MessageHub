@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 90px;
     padding-bottom: 20px;
 }
 
@@ -82,8 +82,8 @@ h6,
 }
 
 .btn {
-    font-size: 17px;
-    padding: 7px 20px;
+    /*font-size: 17px;
+    padding: 7px 20px;*/
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
@@ -97,4 +97,50 @@ h6,
     font-weight: 700;
 }
 
+/* Page-level styles*/
 
+.messages {
+    list-style: none;
+}
+
+.messages > li {
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.date {
+    background: red;
+    color: white;
+    text-align: center;
+    width: 60px;
+    border-radius: 8px;
+}
+
+.messages > li .date .month {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 6px;
+}
+
+.messages > li .date .day {
+    background: #f7f7f7;
+    color: #333;
+    font-size: 20px;
+    padding: 6px 12px;
+}
+
+ .messages > li .details {
+    position: absolute;
+    top: 0;
+    left: 70px;
+}
+
+ .messages > li .details .artist {
+     font-weight: bold;
+     display: block;
+    }
+
+ .messages > li .details .genre {
+     font-size: 15px;
+ }

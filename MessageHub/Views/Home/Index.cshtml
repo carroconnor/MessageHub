@@ -3,9 +3,90 @@
     ViewBag.Title = "Home Page";
 }
 
-<ul>
+<ul class="messages">
     @foreach (var message in Model)
     {
-        <li>@message.Venue @message.DateTime - @message.Artist.Name</li>
+        <li>
+            <div class="date">
+                <div class="month">
+                    @message.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @message.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @message.Artist.Name <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Like</button>
+                </span>
+                <span class="artist">
+                    @message.Venue <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@message.ArtistId">Like</button>
+                </span>
+                <span class="genre">
+                    @message.Genre.Name
+                </span>
+                <button data-message-id="@message.Id" class="btn btn-default btn-sm pull-right js-toggle-attendanceAPI">Interested?</button>
+            </div>
+        </li>
     }
 </ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-toggle-attendanceAPI").click(function(e) {
+                var button = $(e.target);
+                $.post("/api/attendancesAPI", { gigId: button.attr("data-message-id") })
+                    .done(function() {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Very Interested");
+                    })
+                    .fail(function() {
+                        alert("Something failed!");
+                    });
+            });
+
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/followings", { messageId: button.attr("data-user-id") })
+                    .done(function () {
+                        button.text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    });
+            });
+        });
+    </script>
+}
+
+
+
+
+@*<ul class="messages">
+    @foreach (var message in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @message.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @message.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="venue">
+                    @message.Venue
+                </span>
+                <span class="artist">
+                    @message.Artist.Name
+                </span>
+                <span class="genre">@message.Genre.Name</span>
+            </div>
+        </li>
+    }
+</ul>*@
