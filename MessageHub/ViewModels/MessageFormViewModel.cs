@@ -40,8 +40,8 @@ namespace MessageHub.ViewModels
                 Expression<Func<MessagesController, ActionResult>> create =
                     (c => c.Create(this));
 
-                var action = (Id != 0 ) ? update : create;
-                
+                var action = (Id != 0) ? update : create;
+
                 return (action.Body as MethodCallExpression).Method.Name;
             }
         }

@@ -18,14 +18,17 @@
             </div>
             <div class="details">
                 <span class="artist">
+                    @message.Artist
+                </span>
+                <span class="artist">
                     @message.Venue
                 </span>
                 <span class="genre">
                     @message.Genre.Name
                 </span>
                 <div class="actions">
-                    <a href="@Url.Action("Edit", "Messages", new { id = message.Id })">Edit</a>
-                    <a href="@Url.Action("Delete", "Messages", new { id = message.Id })">Delete</a>
+                    <a href="@Url.Action("Edit", "Messages", new {id = message.Id})">Edit</a>
+                    <a href="@Url.Action("Delete", "Messages", new {id = message.Id})">Delete</a>
                 </div>
             </div>
         </li>

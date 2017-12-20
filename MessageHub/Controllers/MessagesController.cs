@@ -55,9 +55,21 @@ namespace MessageHub.Controllers
                 Id = message.Id,
                 Genres = _context.Genres.ToList(),
                 Date = message.DateTime.ToString("d MMM yyyy"),
-                Time = message.DateTime.ToString("HH:mm"),
+                Time = message.DateTime.ToString("HH mm"),
                 Genre = message.GenreId,
                 Message = message.Venue
+            };
+
+            return View("MessageForm", viewModel);
+        }
+
+        [Authorize]
+        public ActionResult Create()
+        {
+            var viewModel = new MessageFormViewModel
+            {
+                Genres = _context.Genres.ToList(),
+                Heading = "Add a Message"
             };
 
             return View("MessageForm", viewModel);
