@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using MessageHub.Models;
-using Microsoft.Build.Framework;
 
 namespace MessageHub.Data
 {
     class MessageEntity
     {
-    
+
         public int Id { get; set; }
 
         public bool IsCanceled { get; set; }
@@ -28,8 +24,8 @@ namespace MessageHub.Data
 
         public Genre Genre { get; set; }
 
-        [Required]
+        [Microsoft.Build.Framework.Required]
         public byte GenreId { get; set; }
-    
+
     }
 }
