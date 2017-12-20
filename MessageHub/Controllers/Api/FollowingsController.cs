@@ -4,7 +4,7 @@ using MessageHub.Dtos;
 using MessageHub.Models;
 using Microsoft.AspNet.Identity;
 
-namespace MessageHub.Controllers
+namespace MessageHub.Controllers.Api
 {
     [Authorize]
     public class FollowingsController : ApiController

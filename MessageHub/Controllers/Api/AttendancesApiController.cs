@@ -3,9 +3,8 @@ using System.Web.Http;
 using MessageHub.Dtos;
 using MessageHub.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security.Provider;
 
-namespace MessageHub.Controllers
+namespace MessageHub.Controllers.Api
 {
     [Authorize]
     public class AttendancesApiController : ApiController

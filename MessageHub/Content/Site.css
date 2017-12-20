@@ -155,7 +155,6 @@ h6,
 
  .messages > li .actions {
      font-size: 15px;
-     display: none;
  }
 
  .message > li:hover .actions {

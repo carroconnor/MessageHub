@@ -20,6 +20,10 @@ namespace MessageHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
             var message = _context.Messages.Single(g => g.Id == id && g.ArtistId == userId);
+
+            if (message.IsCanceled)
+                return NotFound();
+
             message.IsCanceled = true;
             _context.SaveChanges();
 
