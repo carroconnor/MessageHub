@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using MessageHub.Models;
+using MessageHub.Data;
 using MessageHub.ViewModels;
 using Microsoft.AspNet.Identity;
 
@@ -86,17 +86,7 @@ namespace MessageHub.Controllers
                 return View("MessageForm", viewModel);
             }
 
-            var message = new Message
-            {
-                ArtistId = User.Identity.GetUserId(),
-                DateTime = viewModel.GetDateTime(),
-                GenreId = viewModel.Genre,
-                Venue = viewModel.Message
-            };
-
-            _context.Messages.Add(message);
-            _context.SaveChanges();
-
+            var messageService = new MessageService
             return RedirectToAction("Mine", "Messages");
         }
 

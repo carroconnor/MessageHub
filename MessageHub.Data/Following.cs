@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MessageHub.Models
+namespace MessageHub.Data
 {
     public class Following
     {

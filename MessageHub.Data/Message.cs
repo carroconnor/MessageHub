@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using MessageHub.Models;
 
-namespace MessageHub.Models
+namespace MessageHub.Data
 {
     public class Message
     {
